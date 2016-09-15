@@ -1,0 +1,4 @@
+colorlog==2.7.0
+lxml==3.6.4
+requests==2.11.1
+requests-cache==0.4.12
