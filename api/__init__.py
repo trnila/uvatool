@@ -8,7 +8,8 @@ def getInfo(id):
 
     return {
         'nid': tree.xpath("//input[@name='problem_nid']/@value"),
-        'url': tree.xpath("//a[contains(@class, 'problem-statement')]/@href[1]")
+        'url': tree.xpath("//a[contains(@class, 'problem-statement')]/@href[1]"),
+        'input_ids': sorted(set(tree.xpath("//*[@data-id]/@data-id")))
     }
 
 def getOutput(id, input):
@@ -26,3 +27,7 @@ def getOutput(id, input):
        tree = html.fromstring(res.content)
 
        return tree.xpath("//textarea[@id='edit-output-data']/text()")[0]
+
+def getInput(id):
+    res = requests.post("https://www.udebug.com/get-selected-input", {'nid': id})
+    return res.json()['input_value']
