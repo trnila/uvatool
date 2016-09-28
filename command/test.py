@@ -18,17 +18,18 @@ class Test():
         for file in glob.glob("*.in"):
             ok = True
 
-            with open(file) as input:
-                proc = subprocess.Popen(['./' + id], stdin=input, stdout=subprocess.PIPE)
-                lines2 = proc.communicate()[0].decode('utf-8').splitlines()
+            with open("/tmp/out", "w") as programOut:
+                with open(file) as input:
+                    proc = subprocess.Popen(['./' + id], stdin=input, stdout=programOut)
+                    proc.communicate()
 
             expectPath = os.path.splitext(file)[0] + '.out'
-            with open(expectPath) as expect:
-                for line in difflib.unified_diff(lines2, expect.read().splitlines(), fromfile='file1', tofile='file2', lineterm=''):
-                    print(line)
-                    ok = False
 
-            if ok:
+            proc = subprocess.Popen(["diff", "-w", "-y", "/tmp/out", expectPath], stdout=subprocess.PIPE)
+            out = proc.communicate()[0]
+            if proc.returncode == 0:
                 logging.info("test %s is ok" % file)
             else:
+                print(out.decode('utf-8'))
                 logging.error("test %s is failing" % file)
+                exit(1)
