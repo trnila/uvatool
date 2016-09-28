@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import argparse
 import logging
 import command
@@ -26,6 +27,7 @@ parser_b = subparsers.add_parser('read')
 
 parser_b = subparsers.add_parser('inputs')
 parser_b = subparsers.add_parser('test')
+parser_b.add_argument('-i', '--input', action='append')
 
 parser_b = subparsers.add_parser('generate')
 parser_b.add_argument('input', help='input file')

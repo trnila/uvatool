@@ -15,9 +15,8 @@ class Test():
 
         os.system(subprocess.list2cmdline(['make', id]))
 
-        for file in glob.glob("*.in"):
-            ok = True
-
+        inputs = args.input if args.input is not None else glob.glob("*.in")
+        for file in inputs:
             with open("/tmp/out", "w") as programOut:
                 with open(file) as input:
                     proc = subprocess.Popen(['./' + id], stdin=input, stdout=programOut)
