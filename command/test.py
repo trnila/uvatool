@@ -1,15 +1,11 @@
-import difflib
-import filecmp
 import glob
 import os
 import logging
 import subprocess
-
-import api
 import utils
 
 
-class Test():
+class Test:
     def run(self, args):
         id = utils.get_problem_from_cwd()
 

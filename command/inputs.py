@@ -1,16 +1,10 @@
-import os
 import logging
-import subprocess
-from shutil import copyfile
-
-import requests
-from lxml import html
 
 import api
 import utils
 
 
-class Inputs():
+class Inputs:
     def run(self, args):
         id = utils.get_problem_from_cwd()
 

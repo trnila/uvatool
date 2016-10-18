@@ -5,6 +5,8 @@ from shutil import copyfile
 dir = os.path.dirname(os.path.realpath(__file__)) + '/../'
 
 class Init():
+
+class Init:
     def run(self, args):
         logging.info('initing %s' % args.id)
         logging.debug('creating directory')
