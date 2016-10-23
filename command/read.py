@@ -3,15 +3,13 @@ import sys
 import subprocess
 
 import requests
-from settings import UVA_WWW, UDEBUG_WWW, DEBUGGING
+from settings import UVA_WWW, UDEBUG_WWW 
 from lxml import html
 
 
 class Read:
     def run(self, args):
         id = os.path.basename(os.getcwd())
-        if DEBUGGING :
-            print(id)
 
         res = requests.get(UDEBUG_WWW + "/UVa/" + id)
         tree = html.fromstring(res.content)

@@ -3,7 +3,7 @@ import argparse
 import logging
 import command
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 try:
     from colorlog import ColoredFormatter

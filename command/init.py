@@ -1,6 +1,5 @@
 import os
 import logging
-from settings import DEBUGGING
 from shutil import copyfile
 
 dir = os.path.dirname(os.path.realpath(__file__)) + '/../'
@@ -9,12 +8,11 @@ dir = os.path.dirname(os.path.realpath(__file__)) + '/../'
 class Init:
     def run(self, args):
         logging.info('initing %s' % args.id)
-        DEBUGGING and logging.debug('creating directory')
+        logging.debug('creating directory' )
         if not os.path.exists(args.id):
             os.makedirs(args.id)
 
-        DEBUGGING and logging.debug('creating template')
-        print(dir)
+        logging.debug('creating template')
         copyfile(
                 '%s/templates/template.%s' % (dir, args.template),
                 '%s/%s.%s' % (args.id, args.id, args.template))
