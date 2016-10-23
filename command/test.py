@@ -20,7 +20,7 @@ class Test:
 
             expectPath = os.path.splitext(file)[0] + '.out'
 
-            proc = subprocess.Popen(["diff", "-w", "-y", "/tmp/out", expectPath], stdout=subprocess.PIPE)
+            proc = subprocess.Popen(["diff", "-y", "/tmp/out", expectPath], stdout=subprocess.PIPE)
             out = proc.communicate()[0]
             if proc.returncode == 0:
                 logging.info("test %s is ok" % file)
