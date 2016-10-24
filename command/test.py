@@ -9,13 +9,13 @@ class Test:
     def run(self, args):
         id = utils.get_problem_from_cwd()
 
-        os.system(subprocess.list2cmdline(['make', id]))
+        os.system(subprocess.list2cmdline(['make', str(id)]))
 
         inputs = args.input if args.input is not None else glob.glob("*.in")
         for file in inputs:
             with open("/tmp/out", "w") as programOut:
                 with open(file) as input:
-                    proc = subprocess.Popen(['./' + id], stdin=input, stdout=programOut)
+                    proc = subprocess.Popen(['./' + str(id)], stdin=input, stdout=programOut)
                     proc.communicate()
 
             expectPath = os.path.splitext(file)[0] + '.out'

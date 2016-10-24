@@ -1,11 +1,11 @@
 import requests
 from lxml import html
 from settings import UDEBUG_WWW
-
+import requests, requests.utils, pickle
 
 class Request():
     def getInfo(self, id):
-        res = requests.get(UDEBUG_WWW + "/UVa/" + id)
+        res = requests.get("%s/UVa/%d" % (UDEBUG_WWW, id))
         tree = html.fromstring(res.content)
 
         return {
@@ -25,7 +25,7 @@ class Request():
             'user_output': '',
             'form_id': 'udebug_custom_problem_view_input_output_form'
         }
-        res = requests.post(UDEBUG_WWW + '/UVa/' + id, data)
+        res = requests.post("%s/UVa/%d" % (UDEBUG_WWW, id), data)
         tree = html.fromstring(res.content)
 
         return tree.xpath("//textarea[@id='edit-output-data']/text()")[0]

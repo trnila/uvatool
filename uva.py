@@ -3,17 +3,11 @@ import argparse
 import logging
 import command
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 
 try:
     from colorlog import ColoredFormatter
     logging.getLogger().handlers[0].setFormatter(ColoredFormatter())
-except:
-    pass
-
-try:
-    import requests_cache
-    requests_cache.install_cache('/tmp/uva.cache', allowable_methods=('GET', 'POST'))
 except:
     pass
 
@@ -25,6 +19,8 @@ sub.add_argument('-t', '--template', help='template', default='c')
 
 subparsers.add_parser('read')
 subparsers.add_parser('inputs')
+subparsers.add_parser('submit')
+subparsers.add_parser('stats')
 
 sub = subparsers.add_parser('test')
 sub.add_argument('-i', '--input', action='append')
