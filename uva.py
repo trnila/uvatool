@@ -15,7 +15,7 @@ parser = argparse.ArgumentParser()
 subparsers = parser.add_subparsers(help='sub-command help', dest="action")
 sub = subparsers.add_parser('init')
 sub.add_argument('id', help='id of uva problem')
-sub.add_argument('-t', '--template', help='template', default='c')
+sub.add_argument('language', help='language to use')
 
 subparsers.add_parser('read')
 subparsers.add_parser('inputs')
